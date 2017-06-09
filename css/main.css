@@ -1,1 +1,3 @@
-	
+.button-add, .button-sub, .button-del{
+    cursor:pointer;
+}	

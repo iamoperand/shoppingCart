@@ -19,9 +19,10 @@ $(function(){
 				console.log('newlist created');
 				newList = $('<tr data-row='+i+'><td>' + cartList[i].name + '</td><td>' +
 			cartList[i].price + '</td><td>' + cartList[i].size + '</td><td data-quantity='+i+'>' + cartList[i].quantity + 
-			'</td><td data-price='+i+'>' + cartList[i].quantity * cartList[i].price + '</td><td><button data-id='+i+
-			' class="btn btn-primary button-add">Add</button></td><td><button data-id='+i+' class="btn btn-primary button-sub">Sub</button></td>'+
-			'<td><button data-id='+i+' class="btn btn-primary button-del">Del</button></td></tr>');
+			'</td><td data-price='+i+'>' + cartList[i].quantity * cartList[i].price + '</td><td class="text-center"><img src="./images/plus.png" width="32" data-id='+
+			i+' class=" button-add" /></td><td class="text-center"><img src="./images/negative.png" width="32" data-id='+i+
+			' class="button-sub" /></td>'+
+			'<td class="text-center"><img src="./images/delete.png" width="32" data-id='+i+' class="button-del" /></td></tr>');
 			 console.log(newList);
 
 			newList.prependTo('tbody');
