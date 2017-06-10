@@ -30,13 +30,7 @@ $(function(){
 
 	//Click event handler for increasing the quantity
 	$('.button-add').click(function(){
-		//console.log("this object (Array element)", $(this)[0]);
-		//console.log("this object (Array)", $(this));
 		
-		var parent = $(this)[0].parentElement;
-		var ancestor = parent.parentNode;
-		var quantityElement = ancestor.children[3];
-		console.log("quantityElement: ", quantityElement);
 		
 		cartList[parseInt($(this).attr('data-id'))].quantity++;
 		console.log(parseInt($(this).attr('data-id')));
@@ -57,10 +51,14 @@ $(function(){
 		console.log("quantityElement: ", quantityElement);
 		
 		cartList[parseInt($(this).attr('data-id'))].quantity--;
-
+		console.log("please", parseInt($(this).attr('data-id')));
+		console.log("please please", (cartList[parseInt($(this).attr('data-id'))]).quantity);
 		//If the quantity becomes zero after decrementing, then remove the element
-		if(cartList[parseInt($(this).attr('data-id'))].quantity <= 0){
+		if((cartList[parseInt($(this).attr('data-id'))]).quantity <= 0){
 			ancestor.remove();
+			console.log("pleSADAS", cartList.length);
+			cartList.splice(parseInt($(this).attr('data-id')), 1);
+			console.log("pleSADAS", cartList.length);
 		}
 		
 		
@@ -79,6 +77,8 @@ $(function(){
 		var parent = $(this)[0].parentElement;
 		var ancestor = parent.parentNode;
 		ancestor.remove();
+		console.log('inside delete: ', parseInt($(this).attr('data-id'))+1);
+		cartList.splice(parseInt($(this).attr('data-id')), 1);
 		
 		saveProducts();
 		refreshProducts();	

@@ -7,14 +7,20 @@ function retrieveProducts() {
 }
 
 function saveProducts() {
-    for(var product of cartList){
+	if(cartList.length > 0){
+		for(var product of cartList){
     	console.log("Product: ", product);
 
     	//Convert each product object into string format for storage in localStorage
     	localStorage.setItem('cartList', JSON.stringify(cartList));
+    	}
+	}else{
+    	localStorage.setItem('cartList', '');
     }
     console.log('Saving products into the localStorage');
-}
+	}
+    
+
         
 
 function refreshProducts() {
