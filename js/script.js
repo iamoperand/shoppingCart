@@ -9,7 +9,7 @@ function Items(name, price, size, quantity){
 
        
 $(function(){
-    
+    retrieveProducts();
     for(var i=1; i<=9;i++){
 
         $('[data-id = ' + i + ']').click(function () {
@@ -36,9 +36,28 @@ $(function(){
             console.log('Quantity: ' + quantity);
             console.log('Name: ' + name);
 
-            var newItem = new Items(name, price, size, quantity);
+            for(var j=0; j<cartList.length; j++){
+                var flag = 0;
+                console.log('product is: ', cartList[j]);
+                console.log(cartList[j].name);
+                if(cartList[j].name == name){
+                    console.log('item found in cartList at: ', j);
+                    console.log('Initially quantity is: ', cartList[j].quantity);
+                    cartList[j].quantity = (parseInt(cartList[j].quantity) + parseInt(quantity)).toString();
+                    console.log('Finally quantity becomes: ', cartList[j].quantity);
+                    flag = 1;
+                }
+                    
+                }
+            
+            if(!flag){
+                var newItem = new Items(name, price, size, quantity);
             console.log("This is new item: " , newItem);
+
+
             cartList.push(newItem);
+            
+            }
             console.log("cartList Array is: ", cartList);
 
         
