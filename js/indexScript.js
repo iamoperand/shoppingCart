@@ -62,11 +62,12 @@ $(function(){
             //console.log('Name: ' + name);
 
             
+            //Flag to check the same product exists in the array or not
+                var flag = 0;
             //For-loop for checking if the cartList array contains the product initially
             for(var j=0; j<cartList.length; j++){
                 
-                //Flag to check the same product exists in the array or not
-                var flag = 0;
+                
                 console.log('product is: ', cartList[j]);
                 console.log(cartList[j].name);
                 if(cartList[j].name == name){
@@ -75,6 +76,7 @@ $(function(){
                     cartList[j].quantity = (parseInt(cartList[j].quantity) + parseInt(quantity)).toString();
                     console.log('At the end, quantity is: ', cartList[j].quantity);
                     flag = 1;
+                    break;
                 }
                     
             }
