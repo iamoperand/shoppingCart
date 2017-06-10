@@ -18,8 +18,7 @@ $(function(){
         //Click event handlers for AddToCart buttons identified by ['data-id=<id>']
         $('[data-id = ' + i + ']').click(function () {
            
-            //var obj = $(this);
-            //console.log("obj is ", obj);
+            
 
             //Get the siblings of the button-element (AddToCart Button)
             var siblings = $(this).siblings();
@@ -31,13 +30,12 @@ $(function(){
             
             //Accessing the name of the product which is the sibling of the parent element
             var parent = siblings.parent();
-            //console.log('Parent ' ,  parent);
+            //console.log('Parent: ' ,  parent);
             
 
             name = parent.siblings()[0].innerText;
-            // console.log("ith value " + i);
-
-            //console.log('Price: ' + price);
+            
+            //console.log('Price of the product is: ' + price);
             //console.log('Size: ' + size);
             //console.log('Quantity: ' + quantity);
             //console.log('Name: ' + name);
@@ -66,9 +64,8 @@ $(function(){
                 console.log("This is new item: " , newItem);
                 cartList.push(newItem);
             }
-            
-            console.log("cartList Array is: ", cartList);
 
+            
             //Push the changes to localStorage as well
             saveProducts();
         });

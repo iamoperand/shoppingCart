@@ -1,4 +1,3 @@
-
 $(function(){
 	retrieveProducts();
 
@@ -16,21 +15,25 @@ $(function(){
 		for(var i=0; i<cartList.length;i++){
 
 			if(cartList[i].quantity > 0){
-				console.log('newlist created');
+				//Element object is created and assigned to newList
 				newList = $('<tr data-row='+i+'><td>' + cartList[i].name + '</td><td>' +
-			cartList[i].price + '</td><td>' + cartList[i].size + '</td><td data-quantity='+i+'>' + cartList[i].quantity + 
-			'</td><td data-price='+i+'>' + cartList[i].quantity * cartList[i].price + '</td><td class="text-center"><img src="./images/plus.png" width="32" data-id='+
-			i+' class=" button-add" /></td><td class="text-center"><img src="./images/negative.png" width="32" data-id='+i+
-			' class="button-sub" /></td>'+
-			'<td class="text-center"><img src="./images/delete.png" width="32" data-id='+i+' class="button-del" /></td></tr>');
-			 console.log(newList);
+				cartList[i].price + '</td><td>' + cartList[i].size + '</td><td data-quantity='+i+'>' + cartList[i].quantity + 
+				'</td><td data-price='+i+'>' + cartList[i].quantity * cartList[i].price + 
+				'</td><td class="text-center"><img src="./images/plus.png" width="32" data-id='+
+				i+' class=" button-add" /></td><td class="text-center"><img src="./images/negative.png" width="32" data-id='+i+
+				' class="button-sub" /></td>'+
+				'<td class="text-center"><img src="./images/delete.png" width="32" data-id='+i+' class="button-del" /></td></tr>');
+				 
 
-			newList.prependTo('tbody');
+				console.log(newList);
+
+				//The element object is then prepended to <tbody>
+				newList.prependTo('tbody');
 			}
 			 
 	}
 
-
+	//Click 
 	$('.button-add').click(function(){
 		console.log("this object (Array element)", $(this)[0]);
 		console.log("this object (Array)", $(this));
@@ -86,13 +89,12 @@ $(function(){
 		
         refreshProducts();	
 
-		//var quantityElement = ancestor.children[3];
-		//console.log("quantityElement: ", quantityElement);
+		
 		
 			
 	});
 }
-	//var tr = document.createElement('tr');
+	
 
 
 

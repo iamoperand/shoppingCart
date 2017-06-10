@@ -1,50 +1,42 @@
 var cartList = [];
- function retrieveProducts() {
-        	console.log('Getting retrieved');
-            cartList = JSON.parse(
-                localStorage.getItem('cartList') ? localStorage.getItem('cartList') : '[]');
-        }
- function saveProducts () {
-            for(var product of cartList){
-            	console.log('checking');
-            	console.log("product ", product);
-            	
-            	localStorage.setItem('cartList', JSON.stringify(cartList));
-            
-            }
-            console.log('Getting saved into local storage');
-        }
+
+function retrieveProducts() {
+	console.log('Retrieving products');
+    //Convert string into objects and store them in cartList
+    cartList = JSON.parse(localStorage.getItem('cartList') ? localStorage.getItem('cartList') : '[]');
+}
+
+function saveProducts() {
+    for(var product of cartList){
+    	console.log("Product: ", product);
+
+    	//Convert each product object into string format for storage in localStorage
+    	localStorage.setItem('cartList', JSON.stringify(cartList));
+    }
+    console.log('Saving products into the localStorage');
+}
         
 
-function refreshProducts () {
+function refreshProducts() {
 
-//Getting refreshed
-//retrieveProducts();
-console.log('View getting refreshed');
-cartList = JSON.parse(
-    localStorage.getItem('cartList') ? localStorage.getItem('cartList') : '[]');
+	console.log('View getting refreshed');
 
-var newList = '';
-console.log('Inside refresh products: ', cartList.length);
-
-for(var i=0; i<cartList.length;i++){
- //console.log("checking inner text ", parseInt($('[data-quantity='+i+']')[0].innerText));
+	//Call retrieveProducts() to re-assign the updated values of quantity into the cartList array  
+	retrieveProducts();
 
 
-//if(parseInt($('[data-quantity='+i+']')[0].innerText) <= 0){
-//	console.log('quantity less than or equal to zero now. Changing view');
-//	console.log($('[data-row='+i+']')[0]);
-	
-//}else{
-	console.log(cartList[i].quantity);
-	if(cartList[i].quantity > 0){
-		console.log($('[data-quantity='+i+']')[0].innerText);
-$('[data-quantity='+i+']')[0].innerText = cartList[i].quantity;
-$('[data-price='+i+']')[0].innerText = cartList[i].quantity * cartList[i].price;
+	console.log('Inside refreshProducts: cartList.length is-> ', cartList.length);
+
+
+	//Check if quantity is greater than zero and dynamically assign it to the HTML Elements
+	for(var i=0; i<cartList.length;i++){
+		console.log("cartList[i].quantity: ", cartList[i].quantity);
+		if(cartList[i].quantity > 0){
+			console.log($('[data-quantity='+i+']')[0].innerText);
+			$('[data-quantity='+i+']')[0].innerText = cartList[i].quantity;
+			$('[data-price='+i+']')[0].innerText = cartList[i].quantity * cartList[i].price;
+		}
+		
 
 	}
-	
-//}
-
-}
 }
