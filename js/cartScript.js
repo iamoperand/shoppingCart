@@ -4,16 +4,20 @@ $(function(){
 	console.log("cartlist length is: " + cartList.length);
 
 	if(!cartList.length){
-		//list is empty currently
+		//list is empty
+
+		$('.container').html('<div class="text-center" style="font-size:4rem;font-weight: 700">'+
+			'<div>Your shopping cart is empty!</div><a href="./index.html" style="text-decoration: none;font-size: 3rem;">Shop Now</a></div> ');
+
 	}else{
 		var newList = '';
 		for(var i=0; i<cartList.length;i++){
 
 			if(cartList[i].quantity > 0){
 				//Element object is created and assigned to newList
-				newList = $('<tr data-row='+i+'><td>' + cartList[i].name + '</td><td>' +
-				cartList[i].price + '</td><td>' + cartList[i].size + '</td><td data-quantity='+i+'>' + cartList[i].quantity + 
-				'</td><td data-price='+i+'>' + cartList[i].quantity * cartList[i].price + 
+				newList = $('<tr data-row='+i+'><td>' + cartList[i].name + '</td><td>&#8377; ' +
+				 (+cartList[i].price).toLocaleString() + '</td><td>' + cartList[i].size + '</td><td data-quantity='+i+'>' + cartList[i].quantity + 
+				'</td><td data-price='+i+'>&#8377; ' + (cartList[i].quantity * (cartList[i].price)).toLocaleString() + 
 				'</td><td class="text-center"><img src="./images/plus.png" width="32" data-id='+
 				i+' class=" button-add" /></td><td class="text-center"><img src="./images/negative.png" width="32" data-id='+i+
 				' class="button-sub" /></td>'+
@@ -51,14 +55,17 @@ $(function(){
 		console.log("quantityElement: ", quantityElement);
 		
 		cartList[parseInt($(this).attr('data-id'))].quantity--;
-		console.log("please", parseInt($(this).attr('data-id')));
-		console.log("please please", (cartList[parseInt($(this).attr('data-id'))]).quantity);
 		//If the quantity becomes zero after decrementing, then remove the element
 		if((cartList[parseInt($(this).attr('data-id'))]).quantity <= 0){
 			ancestor.remove();
-			console.log("pleSADAS", cartList.length);
+			//console.log("cartList.length at the end: ", cartList.length);
 			cartList.splice(parseInt($(this).attr('data-id')), 1);
-			console.log("pleSADAS", cartList.length);
+			//console.log("cartList.length at the end: ", cartList.length);
+
+
+			//Re-draw the content inside the container (when cartList.length = 0) which currently contains the table element
+			$('.container').html('<div class="text-center" style="font-size:4rem;font-weight: 700">'+
+			'<div>Your shopping cart is empty!</div><a href="./index.html" style="text-decoration: none;font-size: 3rem;">Shop Now</a></div> ');
 		}
 		
 		
@@ -77,9 +84,15 @@ $(function(){
 		var parent = $(this)[0].parentElement;
 		var ancestor = parent.parentNode;
 		ancestor.remove();
-		console.log('inside delete: ', parseInt($(this).attr('data-id'))+1);
+		//console.log('Inside delete: ', parseInt($(this).attr('data-id'))+1);
 		cartList.splice(parseInt($(this).attr('data-id')), 1);
 		
+		if(!cartList.length){
+
+			//Re-draw the content inside the container (when cartList.length = 0) which currently contains the table element
+			$('.container').html('<div class="text-center" style="font-size:4rem;font-weight: 700">'+
+			'<div>Your shopping cart is empty!</div><a href="./index.html" style="text-decoration: none;font-size: 3rem;">Shop Now</a></div> ');
+		}
 		saveProducts();
 		refreshProducts();	
 	});

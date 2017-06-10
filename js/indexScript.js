@@ -28,6 +28,11 @@ $(function(){
             size = siblings[2].innerText;
             quantity = siblings[4].value;
 
+            //Condition-check for QUANTITY input
+            if(!quantity){
+                alert('This is a required field');
+                return false;
+            }
             if (isNaN(quantity)) 
             {
                 alert("Quantity must be a number");
@@ -81,7 +86,7 @@ $(function(){
                 cartList.push(newItem);
             }
 
-            alert("Successfully added " + quantity +" products to cart");
+            alert("Successfully added " + quantity +" product/s to cart");
             //Push the changes to localStorage as well
             saveProducts();
         });

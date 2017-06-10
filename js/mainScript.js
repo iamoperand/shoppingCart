@@ -17,7 +17,7 @@ function saveProducts() {
 	}else{
     	localStorage.setItem('cartList', '');
     }
-    console.log('Saving products into the localStorage');
+    	console.log('Saving products into the localStorage');
 	}
     
 
@@ -40,7 +40,7 @@ function refreshProducts() {
 		if(cartList[i].quantity > 0){
 			console.log($('[data-quantity='+i+']')[0].innerText);
 			$('[data-quantity='+i+']')[0].innerText = cartList[i].quantity;
-			$('[data-price='+i+']')[0].innerText = cartList[i].quantity * cartList[i].price;
+			$('[data-price='+i+']')[0].innerHTML = '&#8377; ' + (cartList[i].quantity * cartList[i].price).toLocaleString();
 		}
 		
 
