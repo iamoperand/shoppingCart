@@ -65,8 +65,6 @@ $(function(){
 		
 		
 		saveProducts();
-		
-		
 		refreshProducts();	
 	});
 
@@ -83,8 +81,7 @@ $(function(){
 		ancestor.remove();
 		
 		saveProducts();
-		
-        refreshProducts();	
+		refreshProducts();	
 	});
 }
 	
